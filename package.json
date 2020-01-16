@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "skyline-cli-demo": "./index.js"
+    "skyline-cli": "./index.js"
   },
   "author": "Mr_林小贱",
   "license": "MIT",
