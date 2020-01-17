@@ -40,7 +40,8 @@ const path = require('path');
         if (err) {
           throw err;
         }
-        return resolve();
+        console.log('--- utils.readDir files = ', files);
+        return resolve(files);
       })
     })
   };
@@ -52,8 +53,9 @@ const path = require('path');
    * @returns {Promise<unknown>}
    */
   function copyFile(originPath, curPath) {
+    console.log('---- 进入copyFile = ', originPath, curPath);
     return new Promise(resolve => {
-      fs.copyFile(originPath, curPath, fs.constants.COPYFILE_EXCLfs.constants.COPYFILE_EXCL, (err)=> {
+      fs.copyFile(originPath, curPath, fs.constants.COPYFILE_EXCL, (err)=> {
         if (err) {
           throw err;
         }
@@ -70,11 +72,16 @@ const path = require('path');
    * @returns {Promise<unknown>}
    */
   function copyFilesInArray(originPath, curPath, arr) {
+    console.log('---- utils.copyFilesInArray = ', originPath, curPath, arr);
     return new Promise(async resolve => {
       let extName = '';
-      for (const fileItem of extName) {
-        extName = path.extname(fileItem);
-        await this.copyFile(`${originPath}/${fileItem}`, curPath + extName);
+      for (let i = 0; i <= arr.length - 1; i++) {
+        extName = path.extname(arr[i]);
+        console.log('---- extName = ', extName, arr);
+        console.log('---- originPath = ', `${originPath}/${arr[i]}`);
+        console.log('---- curPath = ', `${curPath}/${extName}`);
+        await copyFile(`${originPath}/${arr[i]}`, curPath + extName);
+        // await copyFile(`${originPath}/${arr[i]}`, `${curPath}/${arr[i]}`);
       }
       return resolve('copyFilesInArray 批量复制 成功!!!!');
     })
