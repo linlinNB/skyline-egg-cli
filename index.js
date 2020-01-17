@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-console.log('---- hello World!!!! ----');
-
 // 获取版本号
 const version = require('./package').version;
 // 获取commander
